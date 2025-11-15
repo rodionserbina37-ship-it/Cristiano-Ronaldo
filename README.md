@@ -9,8 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+
 
         body {
             background: #0a0a0a;
@@ -39,8 +38,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
         .logo {
             font-size: 2rem;
             font-weight: bold;
