@@ -3,114 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CR7 - Легенда футбола</title>
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    <title>CR7 - Cristiano Ronaldo</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #000;
+            background: #0a0a0a;
             color: #fff;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff6b00;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b00;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b00;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800"><rect fill="%231a1a1a" width="1200" height="800"/></svg>');
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, #000 70%);
-        }
-
-        .hero-content {
             text-align: center;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: heroAppear 1.5s ease-out 0.5s forwards;
         }
 
-        @keyframes heroAppear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff0000, #ff6b00);
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b00, #ff0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.5rem;
-            opacity: 0.8;
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ff6b00;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-5px) translateX(-50%);
-            }
+        .btn:hover {
+            background: #ff8c00;
         }
 
+        /* Slider */
         .slider-section {
             padding: 100px 0;
             background: #111;
         }
 
-        .slider-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #ff6b00;
         }
 
         .slider {
-            display: flex;
+            position: relative;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255,107,0,0.3);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
         .slide {
             min-width: 100%;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
         }
 
         .slide-content {
@@ -118,34 +144,22 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 40px;
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.6s ease;
+            padding: 30px;
+            color: white;
         }
 
-        .slide.active .slide-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .slide h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             color: #ff6b00;
-        }
-
-        .slide p {
-            font-size: 1.2rem;
-            opacity: 0.9;
         }
 
         .slider-nav {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            gap: 15px;
+            margin-top: 20px;
+            gap: 10px;
         }
 
         .slider-dot {
@@ -154,86 +168,83 @@
             border-radius: 50%;
             background: #333;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
 
         .slider-dot.active {
             background: #ff6b00;
-            transform: scale(1.2);
         }
 
-        .stats-section {
-            padding: 100px 0;
-            background: linear-gradient(45deg, #1a1a1a, #000);
+        /* Stats */
+        .stats {
+            padding: 80px 0;
+            background: #000;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px 30px;
-            border-radius: 20px;
+            background: #1a1a1a;
+            padding: 40px 20px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 107, 0, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
         }
 
         .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 107, 0, 0.3);
+            transform: translateY(-5px);
+            border-color: #ff6b00;
         }
 
         .stat-number {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: bold;
             color: #ff6b00;
             margin-bottom: 10px;
         }
 
         .stat-label {
             font-size: 1.1rem;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        .video-section {
-            padding: 100px 0;
-            background: #000;
+        /* Videos */
+        .videos {
+            padding: 80px 0;
+            background: #111;
         }
 
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .video-card {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
             background: #1a1a1a;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
         }
 
         .video-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.4);
         }
 
-        .video-card video {
+        .video-placeholder {
             width: 100%;
             height: 200px;
-            object-fit: cover;
+            background: linear-gradient(45deg, #ff6b00, #ff0000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
         }
 
         .video-info {
@@ -245,126 +256,92 @@
             margin-bottom: 10px;
         }
 
-        .parallax-section {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a1a1a" width="1200" height="800"/><circle fill="%23ff6b00" cx="200" cy="200" r="50" opacity="0.1"/><circle fill="%23ff0000" cx="800" cy="400" r="80" opacity="0.1"/><circle fill="%23ffffff" cx="1000" cy="200" r="30" opacity="0.1"/></svg>');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .parallax-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #ff6b00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        /* Footer */
         footer {
-            background: #111;
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 1px solid #333;
+            background: #000;
+            padding: 50px 0 20px;
+            border-top: 2px solid #ff6b00;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            text-align: center;
         }
 
-        .cr7-logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff0000, #ff6b00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .cr7-badge {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6b00;
             margin-bottom: 20px;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1.2rem;
+            .nav-links {
+                gap: 15px;
             }
             
-            .slide h2 {
-                font-size: 1.8rem;
+            .slide img {
+                height: 300px;
             }
-            
-            .parallax-content h2 {
-                font-size: 2rem;
-            }
-        }
-
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #ff0000, #ff6b00);
-            z-index: 1000;
-            transition: width 0.3s ease;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="loading-bar" id="loadingBar"></div>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>CRISTIANO RONALDO</h1>
-            <p>Величайший футболист всех времен</p>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CR7</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#career">Карьера</a></li>
+                    <li><a href="#stats">Статистика</a></li>
+                    <li><a href="#videos">Видео</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="scroll-indicator">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Криштиану Роналду</h1>
+                <p>Легенда футбола. Вдохновение для миллионов.</p>
+                <a href="#career" class="btn">Узнать больше</a>
+            </div>
         </div>
     </section>
 
-    <section class="slider-section">
-        <div class="slider-container">
-            <div class="slider" id="slider">
-                <div class="slide active">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'><rect fill='%231a1a1a' width='1200' height='600'/><text x='50%' y='50%' font-family='Arial' font-size='48' fill='%23ff6b00' text-anchor='middle'>Реал Мадрид • 2009-2018</text></svg>" alt="Real Madrid Era" style="width: 100%; height: 600px; object-fit: cover;">
-                    <div class="slide-content">
-                        <h2>Золотая эра в Реале</h2>
-                        <p>450 голов в 438 матчах • 4 Лиги Чемпионов • 4 Золотых мяча</p>
+    <!-- Slider Section -->
+    <section class="slider-section" id="career">
+        <div class="container">
+            <h2 class="section-title">Карьера</h2>
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect fill='%231a1a1a' width='800' height='500'/><text x='50%' y='50%' font-family='Arial' font-size='36' fill='%23ff6b00' text-anchor='middle'>Спортинг • 2002-2003</text></svg>" alt="Sporting">
+                        <div class="slide-content">
+                            <h3>Начало в Спортинге</h3>
+                            <p>Первые шаги в профессиональном футболе</p>
+                        </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'><rect fill='%23000' width='1200' height='600'/><text x='50%' y='50%' font-family='Arial' font-size='48' fill='%23ff0000' text-anchor='middle'>Манчестер Юнайтед • Возвращение</text></svg>" alt="Manchester United Return" style="width: 100%; height: 600px; object-fit: cover;">
-                    <div class="slide-content">
-                        <h2>Легенда возвращается</h2>
-                        <p>Возвращение в клуб, где родилась легенда • Лидерство и опыт</p>
+                    <div class="slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect fill='%23000' width='800' height='500'/><text x='50%' y='50%' font-family='Arial' font-size='36' fill='%23ff0000' text-anchor='middle'>Манчестер Юнайтед • 2003-2009</text></svg>" alt="Manchester United">
+                        <div class="slide-content">
+                            <h3>Манчестер Юнайтед</h3>
+                            <p>Становление звездой мирового футбола</p>
+                        </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'><rect fill='%23111' width='1200' height='600'/><text x='50%' y='50%' font-family='Arial' font-size='48' fill='%23ffffff' text-anchor='middle'>Сборная Португалии • Капитан</text></svg>" alt="Portugal National Team" style="width: 100%; height: 600px; object-fit: cover;">
-                    <div class="slide-content">
-                        <h2>Гордость Португалии</h2>
-                        <p>Чемпион Европы 2016 • Лидер сборной • Рекордсмен по голам</p>
+                    <div class="slide">
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect fill='%23111' width='800' height='500'/><text x='50%' y='50%' font-family='Arial' font-size='36' fill='%23ffffff' text-anchor='middle'>Реал Мадрид • 2009-2018</text></svg>" alt="Real Madrid">
+                        <div class="slide-content">
+                            <h3>Реал Мадрид</h3>
+                            <p>450 голов • 4 Лиги Чемпионов • Легенда клуба</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -376,194 +353,164 @@
         </div>
     </section>
 
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-card fade-in">
-                <div class="stat-number">850+</div>
-                <div class="stat-label">Голов за карьеру</div>
-            </div>
-            <div class="stat-card fade-in">
-                <div class="stat-number">5</div>
-                <div class="stat-label">Золотых мячей</div>
-            </div>
-            <div class="stat-card fade-in">
-                <div class="stat-number">34</div>
-                <div class="stat-label">Трофея</div>
-            </div>
-            <div class="stat-card fade-in">
-                <div class="stat-number">120+</div>
-                <div class="stat-label">Голов за сборную</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="video-section">
-        <div class="video-grid">
-            <div class="video-card fade-in">
-                <video controls poster="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect fill='%23ff6b00' width='400' height='200'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle'>Лучшие голы</text></svg>">
-                    <source src="#" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>Лучшие голы</h3>
-                    <p>Самые запоминающиеся моменты карьеры</p>
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <h2 class="section-title">Рекорды</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">850+</div>
+                    <div class="stat-label">Голов за карьеру</div>
                 </div>
-            </div>
-            <div class="video-card fade-in">
-                <video controls poster="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect fill='%23ff0000' width='400' height='200'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle'>Тренировки</text></svg>">
-                    <source src="#" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>Рабочая этика</h3>
-                    <p>Секрет успеха Криштиану</p>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Золотых мячей</div>
                 </div>
-            </div>
-            <div class="video-card fade-in">
-                <video controls poster="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect fill='%23000' width='400' height='200'/><text x='50%' y='50%' font-family='Arial' font-size='24' fill='white' text-anchor='middle'>Интервью</text></svg>">
-                    <source src="#" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>Мотивация</h3>
-                    <p>Мысли чемпиона об успехе</p>
+                <div class="stat-card">
+                    <div class="stat-number">34</div>
+                    <div class="stat-label">Трофея</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Голов за сборную</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="parallax-section">
-        <div class="parallax-content">
-            <h2>"Ваш любят не за то, что вы говорите. Ваш любят за то, что вы делаете."</h2>
-            <p>— Криштиану Роналду</p>
+    <!-- Videos Section -->
+    <section class="videos" id="videos">
+        <div class="container">
+            <h2 class="section-title">Лучшие моменты</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-placeholder">🎥 Лучшие голы</div>
+                    <div class="video-info">
+                        <h3>Топ-10 голов</h3>
+                        <p>Самые зрелищные голы в карьере</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-placeholder">⚽ Тренировки</div>
+                    <div class="video-info">
+                        <h3>Рабочая этика</h3>
+                        <p>Как тренируется чемпион</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-placeholder">🏆 Трофеи</div>
+                    <div class="video-info">
+                        <h3>Коллекция наград</h3>
+                        <p>Все достижения легенды</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="cr7-logo">CR7</div>
-            <p>Легенда футбола • Икона стиля • Вдохновение для миллионов</p>
-            <p style="margin-top: 20px; opacity: 0.6;">© 2024 Cristiano Ronaldo Legacy. Все права защищены.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="cr7-badge">CRISTIANO RONALDO</div>
+                <p>Величайший футболист всех времен • Икона спорта • Легенда</p>
+                <p style="margin-top: 20px; opacity: 0.7;">© 2024 CR7 Legacy</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Slider functionality
-        class Slider {
+        // Simple slider
+        class SimpleSlider {
             constructor() {
-                this.slides = document.querySelectorAll('.slide');
+                this.slides = document.querySelector('.slides');
                 this.dots = document.querySelectorAll('.slider-dot');
                 this.currentSlide = 0;
-                this.interval = null;
+                this.totalSlides = this.dots.length;
                 this.init();
             }
 
             init() {
-                this.startAutoSlide();
+                // Dot click events
                 this.dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
                         this.goToSlide(index);
-                        this.resetAutoSlide();
                     });
                 });
 
-                // Pause on hover
-                const slider = document.getElementById('slider');
-                slider.addEventListener('mouseenter', () => this.stopAutoSlide());
-                slider.addEventListener('mouseleave', () => this.startAutoSlide());
+                // Auto slide
+                setInterval(() => {
+                    this.nextSlide();
+                }, 5000);
             }
 
             goToSlide(index) {
-                this.slides[this.currentSlide].classList.remove('active');
-                this.dots[this.currentSlide].classList.remove('active');
-                
                 this.currentSlide = index;
-                
-                this.slides[this.currentSlide].classList.add('active');
-                this.dots[this.currentSlide].classList.add('active');
+                this.updateSlider();
             }
 
             nextSlide() {
-                const next = (this.currentSlide + 1) % this.slides.length;
-                this.goToSlide(next);
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlider();
             }
 
-            startAutoSlide() {
-                this.interval = setInterval(() => this.nextSlide(), 5000);
-            }
-
-            stopAutoSlide() {
-                if (this.interval) {
-                    clearInterval(this.interval);
-                    this.interval = null;
-                }
-            }
-
-            resetAutoSlide() {
-                this.stopAutoSlide();
-                this.startAutoSlide();
+            updateSlider() {
+                // Move slides
+                this.slides.style.transform = `translateX(-${this.currentSlide * 100}%)`;
+                
+                // Update dots
+                this.dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
             }
         }
 
-        // Loading progress
-        window.addEventListener('load', () => {
-            document.getElementById('loadingBar').style.width = '100%';
-            setTimeout(() => {
-                document.getElementById('loadingBar').style.opacity = '0';
-            }, 500);
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #000 100%)';
+            }
+        });
 
+        // Initialize slider when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SimpleSlider();
+        });
+
+        // Simple animation for stat cards
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize slider
-            new Slider();
-
-            // Observe fade-in elements
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Parallax effect
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallax = document.querySelector('.parallax-section');
-                if (parallax) {
-                    parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         });
 
-        // Loading progress simulation
-        let progress = 0;
-        const loadingBar = document.getElementById('loadingBar');
-        const loadingInterval = setInterval(() => {
-            progress += Math.random() * 10;
-            if (progress > 90) {
-                clearInterval(loadingInterval);
-            }
-            loadingBar.style.width = progress + '%';
-        }, 100);
+        // Observe stat cards
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
